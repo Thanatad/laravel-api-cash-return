@@ -1,0 +1,17 @@
+.env
+*.bak
+www/node_modules
+www/public/hot
+www/public/storage
+www/storage/*.key
+www/vendor
+www/.env
+www/.env.backup
+www/.phpunit.result.cache
+www/docker-compose.override.yml
+www/Homestead.json
+www/Homestead.yaml
+www/npm-debug.log
+www/yarn-error.log
+www/.idea
+www/.vscode
