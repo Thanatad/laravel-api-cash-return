@@ -1,8 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center"><img src="https://arogfaeit.gq/public/images/logo.png"></p>
-
-
 ## About CASH RETURN APP
 ......
 
@@ -21,6 +18,7 @@
 
 * Run `git clone https://github.com/Thanatad/laravel-api-cash-return.git`
 * Run `cd laravel-api-cash-return`
+* Installation docker then next step
 * Run `docker-compose exec php sh`
 * Run `composer install` or `php composer.phar install`
 * Create `.env` in application root `cp .env.example .env`
