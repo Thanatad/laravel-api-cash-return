@@ -3,7 +3,7 @@
 <p align="center"><img src="https://arogfaeit.gq/public/images/logo.png"></p>
 
 
-## About CASH RERURN APP
+## About CASH RETURN APP
 ......
 
 ## Installation
