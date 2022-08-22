@@ -8,18 +8,19 @@ use Illuminate\Http\Request;
 
 class VersionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:role-list', ['only' => ['index', 'show']]);
+    }
+
     function index()
     {
-        if ($this->user->tokenCan("1")) {
-            $data = [[
-                'color' => 'orange',
-                'type' => 'fruit',
-                'remain' => 6,
-            ]];
+        $data = [[
+            'color' => 'orange',
+            'type' => 'fruit',
+            'remain' => 6,
+        ]];
 
-            return response(new VersionCollection($data));
-        } else {
-            return response(["message" => "no permission"]);
-        }
+        return response(new VersionCollection($data));
     }
 }
