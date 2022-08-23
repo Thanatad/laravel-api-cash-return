@@ -30,7 +30,9 @@ class AuthController extends Controller
             'mobile' => $fields['mobile']
         ]);
 
-        $token = $user->createToken($request->userAgent(), ["1"])->plainTextToken;
+        $user->assignRole('User');
+
+        $token = $user->createToken($request->userAgent())->plainTextToken;
 
         return response([
             'user' => $user,
@@ -56,7 +58,7 @@ class AuthController extends Controller
 
             $user->tokens()->delete();
 
-            $token = $user->createToken($request->userAgent(), ["$user->role"])->plainTextToken;
+            $token = $user->createToken($request->userAgent())->plainTextToken;
 
             $response = [
                 'user' => $user,

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 
 class CreateAdminUserSeeder extends Seeder
 {
@@ -26,8 +25,6 @@ class CreateAdminUserSeeder extends Seeder
             'mobile' => '0900901116'
         ]);
 
-        $role = Role::find(1);
-
-        $user->assignRole($role);
+        $user->assignRole('Admin');
     }
 }

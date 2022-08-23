@@ -19,14 +19,18 @@ class RoleAndPermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permissions = [
-            'role-list',
-            'role-edit',
+            'role-read',
+            'role-update',
             'role-delete',
             'role-create',
-            'permission-list',
-            'permission-edit',
+            'permission-read',
+            'permission-update',
             'permission-delete',
             'permission-create',
+            'user-read',
+            'user-update',
+            'user-create',
+            'user-delete',
         ];
 
         foreach ($permissions as $permission) {
@@ -34,5 +38,6 @@ class RoleAndPermissionSeeder extends Seeder
         }
 
         Role::create(['name' => 'Admin'])->givePermissionTo(Permission::all());
+        Role::create(['name' => 'User'])->givePermissionTo(Permission::where('name', 'like', 'user-%')->get());
     }
 }

@@ -12,9 +12,9 @@ class PermissionController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:permission-list|permission-create|permission-edit|permission-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:permission-read|permission-create|permission-update|permission-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:permission-create', ['only' => ['store']]);
-        $this->middleware('permission:permission-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:permission-update', ['only' => ['update']]);
         $this->middleware('permission:permission-delete', ['only' => ['destroy']]);
     }
 
@@ -26,18 +26,18 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
-        $hasCled = ($request->input('hascled') === 'true');
+        $hasCrud = ($request->input('hascrud') === 'true');
 
-        if ($hasCled) {
+        if ($hasCrud) {
 
             $fields = $request->validate([
                 'name' => ['required', 'string', new PermissionUnique]
             ]);
 
             $permissions = [
-                "{$fields['name']}-list",
+                "{$fields['name']}-read",
                 "{$fields['name']}-create",
-                "{$fields['name']}-edit",
+                "{$fields['name']}-update",
                 "{$fields['name']}-delete",
             ];
 

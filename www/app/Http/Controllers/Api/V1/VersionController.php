@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class VersionController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission:role-list', ['only' => ['index', 'show']]);
-    }
 
     function index()
     {

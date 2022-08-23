@@ -43,6 +43,12 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->renderable(function (\Spatie\Permission\Exceptions\UnauthorizedException $e, $request) {
+            return response()->json([
+                'message' => 'User does not have the right permissions.'
+            ], 403);
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
