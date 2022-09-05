@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\Auth\AuthResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,11 +32,11 @@ class AuthController extends Controller
         ]);
 
         $user->assignRole('User');
-
+        $user->with('roles');
         $token = $user->createToken($request->userAgent())->plainTextToken;
 
         return response([
-            'user' => $user,
+            'user' => new AuthResource($user),
             'token' => $token
         ], 201);
     }
@@ -48,7 +49,7 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        $user = User::where('email', $fields['username'])->orWhere('username', $fields['username'])->first();
+        $user = User::where('email', $fields['username'])->orWhere('username', $fields['username'])->with('roles')->first();
 
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
@@ -59,9 +60,8 @@ class AuthController extends Controller
             $user->tokens()->delete();
 
             $token = $user->createToken($request->userAgent())->plainTextToken;
-
             $response = [
-                'user' => $user,
+                'user' => new AuthResource($user),
                 'token' => $token
             ];
 
