@@ -24,5 +24,5 @@
 * Create `.env` in application root `cp .env.example .env`
 * Add database `cashreturn` optional inform *.env*
 * Run `php artisan key:generate` to generate key
-* Run `php artisan migrate` to install the database
+* Run `php artisan migrate --seed` to install the database
 * Run `exit` return
